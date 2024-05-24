@@ -1,4 +1,4 @@
-import UserDashboard from "../../pages/userDashboard/userDashboard";
+import UserDashboard from "../../components/pages/userDashboard/userDashboard";
 import { routerType } from "../../types/routeType";
 
 const UserRoute: routerType[] = [
