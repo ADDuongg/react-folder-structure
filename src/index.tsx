@@ -1,15 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from './pages/login/login';
+import Register from './pages/register/register';
+import UserRoute from './route/user/userRoute';
+import ProtectedRoute from './utils/protectedRoute';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './styles/globalStyle';
+import { theme } from './styles/theme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Login />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/register',
+    element: <Register />
+  },
+  ...UserRoute,
+
+])
 root.render(
   <React.StrictMode>
-    <App />
+    <ProtectedRoute>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </ProtectedRoute>
   </React.StrictMode>
 );
 
